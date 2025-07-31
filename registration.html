@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIU Admission Registration - Daffodil International University</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="https://news.daffodilvarsity.edu.bd/">DIU NEWS</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">FORUM</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">STUDENTS</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">PARENTS</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">TEACHERS</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">ALUMNI</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">ADMINISTRATION</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">HELP DESK</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">SITEMAP</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="diulogoside.png" alt="DIU Logo" height="60">
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Admissions <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Admission</a></li>
+                            <li><a class="dropdown-item" href="#">Admission Test Result</a></li>
+                            <li><a class="dropdown-item" href="#">Admission Contact</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Academics <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Programs</a></li>
+                            <li><a class="dropdown-item" href="#">Calendar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Campus <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Campus Life</a></li>
+                            <li><a class="dropdown-item" href="#">Facilities</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Research <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Research Centers</a></li>
+                            <li><a class="dropdown-item" href="#">Publications</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            International <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">International Students</a></li>
+                            <li><a class="dropdown-item" href="#">Partnerships</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            About <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">History</a></li>
+                            <li><a class="dropdown-item" href="#">Leadership</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Search and Apply Buttons -->
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-outline-primary me-3">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <a href="registration.html" class="btn btn-primary me-3">Apply Online</a>
+                    <img src="square.png" alt="" height="40">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Registration Form Section -->
+    <section class="registration-section py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h2 class="mb-0"><i class="fas fa-user-plus me-2"></i>DIU Admission Registration</h2>
+                        </div>
+                        <div class="card-body p-4">
+                            <form id="registrationForm" novalidate>
+                                <!-- Personal Information -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h4 class="text-primary mb-3"><i class="fas fa-user me-2"></i>Personal Information</h4>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label">First Name *</label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                        <div class="invalid-feedback">Please enter your first name.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label">Last Name *</label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                        <div class="invalid-feedback">Please enter your last name.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label">Email Address *</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phone" class="form-label">Phone Number *</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                                        <div class="invalid-feedback">Please enter a valid phone number.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="dateOfBirth" class="form-label">Date of Birth *</label>
+                                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
+                                        <div class="invalid-feedback">Please enter your date of birth.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="gender" class="form-label">Gender *</label>
+                                        <select class="form-select" id="gender" name="gender" required>
+                                            <option value="">Select Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select your gender.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Address Information -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h4 class="text-primary mb-3"><i class="fas fa-map-marker-alt me-2"></i>Address Information</h4>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="address" class="form-label">Full Address *</label>
+                                        <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                                        <div class="invalid-feedback">Please enter your full address.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="city" class="form-label">City *</label>
+                                        <input type="text" class="form-control" id="city" name="city" required>
+                                        <div class="invalid-feedback">Please enter your city.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="postalCode" class="form-label">Postal Code *</label>
+                                        <input type="text" class="form-control" id="postalCode" name="postalCode" required>
+                                        <div class="invalid-feedback">Please enter your postal code.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="country" class="form-label">Country *</label>
+                                        <select class="form-select" id="country" name="country" required>
+                                            <option value="">Select Country</option>
+                                            <option value="bangladesh">Bangladesh</option>
+                                            <option value="india">India</option>
+                                            <option value="pakistan">Pakistan</option>
+                                            <option value="nepal">Nepal</option>
+                                            <option value="sri_lanka">Sri Lanka</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select your country.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nationality" class="form-label">Nationality *</label>
+                                        <input type="text" class="form-control" id="nationality" name="nationality" required>
+                                        <div class="invalid-feedback">Please enter your nationality.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Academic Information -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h4 class="text-primary mb-3"><i class="fas fa-graduation-cap me-2"></i>Academic Information</h4>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="program" class="form-label">Desired Program *</label>
+                                        <select class="form-select" id="program" name="program" required>
+                                            <option value="">Select Program</option>
+                                            <option value="cse">Computer Science & Engineering</option>
+                                            <option value="eee">Electrical & Electronic Engineering</option>
+                                            <option value="me">Mechanical Engineering</option>
+                                            <option value="ce">Civil Engineering</option>
+                                            <option value="bba">Bachelor of Business Administration</option>
+                                            <option value="mba">Master of Business Administration</option>
+                                            <option value="llb">Bachelor of Laws</option>
+                                            <option value="english">English</option>
+                                            <option value="economics">Economics</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select your desired program.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="level" class="form-label">Study Level *</label>
+                                        <select class="form-select" id="level" name="level" required>
+                                            <option value="">Select Level</option>
+                                            <option value="undergraduate">Undergraduate</option>
+                                            <option value="graduate">Graduate</option>
+                                            <option value="phd">PhD</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select your study level.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="previousInstitution" class="form-label">Previous Institution</label>
+                                        <input type="text" class="form-control" id="previousInstitution" name="previousInstitution">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="gpa" class="form-label">Previous GPA/CGPA</label>
+                                        <input type="number" class="form-control" id="gpa" name="gpa" step="0.01" min="0" max="4">
+                                        <div class="form-text">Enter GPA on a 4.0 scale</div>
+                                    </div>
+                                </div>
+
+                                <!-- Document Upload -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h4 class="text-primary mb-3"><i class="fas fa-file-upload me-2"></i>Document Upload</h4>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="photo" class="form-label">Profile Photo *</label>
+                                        <input type="file" class="form-control" id="photo" name="photo" accept="image/*" required>
+                                        <div class="invalid-feedback">Please upload your profile photo.</div>
+                                        <div class="form-text">Maximum file size: 2MB. Supported formats: JPG, PNG</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="transcript" class="form-label">Academic Transcript</label>
+                                        <input type="file" class="form-control" id="transcript" name="transcript" accept=".pdf,.doc,.docx">
+                                        <div class="form-text">Upload your academic transcript (PDF, DOC, DOCX)</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="certificate" class="form-label">Certificates</label>
+                                        <input type="file" class="form-control" id="certificate" name="certificate" accept=".pdf,.doc,.docx">
+                                        <div class="form-text">Upload relevant certificates (PDF, DOC, DOCX)</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="cv" class="form-label">CV/Resume</label>
+                                        <input type="file" class="form-control" id="cv" name="cv" accept=".pdf,.doc,.docx">
+                                        <div class="form-text">Upload your CV or Resume (PDF, DOC, DOCX)</div>
+                                    </div>
+                                </div>
+
+                                <!-- Terms and Conditions -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+                                            <label class="form-check-label" for="terms">
+                                                I agree to the <a href="#" class="text-primary">Terms and Conditions</a> and <a href="#" class="text-primary">Privacy Policy</a> *
+                                            </label>
+                                            <div class="invalid-feedback">You must agree to the terms and conditions.</div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+                                            <label class="form-check-label" for="newsletter">
+                                                I would like to receive updates about DIU programs and events
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Buttons -->
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg me-3">
+                                            <i class="fas fa-paper-plane me-2"></i>Submit Application
+                                        </button>
+                                        <button type="reset" class="btn btn-secondary btn-lg">
+                                            <i class="fas fa-undo me-2"></i>Reset Form
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p class="mb-0">Copyright © 2025 Daffodil International University. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html> 

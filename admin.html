@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIU Admin Dashboard - Application Management</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="diulogoside.png" alt="DIU Logo" height="40">
+                <span class="ms-2">Admin Dashboard</span>
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a class="nav-link" href="registration.html"><i class="fas fa-user-plus"></i> Registration</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid py-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Statistics</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-6 mb-3">
+                                <div class="border rounded p-3">
+                                    <h3 class="text-primary" id="totalApplications">0</h3>
+                                    <small class="text-muted">Total Applications</small>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="border rounded p-3">
+                                    <h3 class="text-warning" id="pendingApplications">0</h3>
+                                    <small class="text-muted">Pending</small>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="border rounded p-3">
+                                    <h3 class="text-success" id="approvedApplications">0</h3>
+                                    <small class="text-muted">Approved</small>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="border rounded p-3">
+                                    <h3 class="text-danger" id="rejectedApplications">0</h3>
+                                    <small class="text-muted">Rejected</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Filters -->
+                        <div class="mt-4">
+                            <h6 class="text-muted mb-3">Filters</h6>
+                            <div class="mb-3">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" id="statusFilter">
+                                    <option value="">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                    <option value="under_review">Under Review</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Program</label>
+                                <select class="form-select" id="programFilter">
+                                    <option value="">All Programs</option>
+                                    <option value="cse">Computer Science & Engineering</option>
+                                    <option value="eee">Electrical & Electronic Engineering</option>
+                                    <option value="me">Mechanical Engineering</option>
+                                    <option value="ce">Civil Engineering</option>
+                                    <option value="bba">Bachelor of Business Administration</option>
+                                    <option value="mba">Master of Business Administration</option>
+                                    <option value="llb">Bachelor of Laws</option>
+                                    <option value="english">English</option>
+                                    <option value="economics">Economics</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="loadApplications()">
+                                <i class="fas fa-filter me-2"></i>Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-list me-2"></i>Applications</h5>
+                        <button class="btn btn-primary btn-sm" onclick="loadApplications()">
+                            <i class="fas fa-sync-alt me-2"></i>Refresh
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="applicationsList">
+                            <div class="text-center py-5">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-3 text-muted">Loading applications...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Detail Modal -->
+    <div class="modal fade" id="applicationModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Application Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="applicationDetails">
+                    <!-- Application details will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning" onclick="updateStatus('under_review')">
+                            <i class="fas fa-eye me-2"></i>Under Review
+                        </button>
+                        <button type="button" class="btn btn-success" onclick="updateStatus('approved')">
+                            <i class="fas fa-check me-2"></i>Approve
+                        </button>
+                        <button type="button" class="btn btn-danger" onclick="updateStatus('rejected')">
+                            <i class="fas fa-times me-2"></i>Reject
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Admin JavaScript -->
+    <script>
+        let currentApplicationId = null;
+        let applications = [];
+
+        // Load applications on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadApplications();
+        });
+
+        // Load applications from API
+        function loadApplications() {
+            const statusFilter = document.getElementById('statusFilter').value;
+            const programFilter = document.getElementById('programFilter').value;
+            
+            fetch('/api/applications')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        applications = data.applications;
+                        
+                        // Apply filters
+                        let filteredApplications = applications;
+                        
+                        if (statusFilter) {
+                            filteredApplications = filteredApplications.filter(app => 
+                                app.status === statusFilter
+                            );
+                        }
+                        
+                        if (programFilter) {
+                            filteredApplications = filteredApplications.filter(app => 
+                                app.academicInfo.program === programFilter
+                            );
+                        }
+                        
+                        displayApplications(filteredApplications);
+                        updateStatistics();
+                    } else {
+                        showAlert('Error loading applications', 'danger');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showAlert('Network error loading applications', 'danger');
+                });
+        }
+
+        // Display applications in the list
+        function displayApplications(apps) {
+            const container = document.getElementById('applicationsList');
+            
+            if (apps.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">No applications found</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = apps.map(app => `
+                <div class="card mb-3 border-${getStatusColor(app.status)}">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h6 class="card-title mb-1">
+                                    ${app.personalInfo.firstName} ${app.personalInfo.lastName}
+                                </h6>
+                                <p class="text-muted mb-1">
+                                    <i class="fas fa-envelope me-2"></i>${app.personalInfo.email}
+                                </p>
+                                <p class="text-muted mb-1">
+                                    <i class="fas fa-graduation-cap me-2"></i>${app.academicInfo.program} (${app.academicInfo.level})
+                                </p>
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-2"></i>Submitted: ${new Date(app.timestamp).toLocaleDateString()}
+                                </small>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                <span class="badge bg-${getStatusColor(app.status)} mb-2">
+                                    ${app.status.replace('_', ' ').toUpperCase()}
+                                </span>
+                                <br>
+                                <button class="btn btn-outline-primary btn-sm" onclick="viewApplication('${app.id}')">
+                                    <i class="fas fa-eye me-2"></i>View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Get status color
+        function getStatusColor(status) {
+            switch (status) {
+                case 'pending': return 'warning';
+                case 'approved': return 'success';
+                case 'rejected': return 'danger';
+                case 'under_review': return 'info';
+                default: return 'secondary';
+            }
+        }
+
+        // Update statistics
+        function updateStatistics() {
+            document.getElementById('totalApplications').textContent = applications.length;
+            document.getElementById('pendingApplications').textContent = 
+                applications.filter(app => app.status === 'pending').length;
+            document.getElementById('approvedApplications').textContent = 
+                applications.filter(app => app.status === 'approved').length;
+            document.getElementById('rejectedApplications').textContent = 
+                applications.filter(app => app.status === 'rejected').length;
+        }
+
+        // View application details
+        function viewApplication(applicationId) {
+            currentApplicationId = applicationId;
+            const application = applications.find(app => app.id === applicationId);
+            
+            if (!application) {
+                showAlert('Application not found', 'danger');
+                return;
+            }
+            
+            const modal = document.getElementById('applicationModal');
+            const detailsContainer = document.getElementById('applicationDetails');
+            
+            detailsContainer.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-primary">Personal Information</h6>
+                        <p><strong>Name:</strong> ${application.personalInfo.firstName} ${application.personalInfo.lastName}</p>
+                        <p><strong>Email:</strong> ${application.personalInfo.email}</p>
+                        <p><strong>Phone:</strong> ${application.personalInfo.phone}</p>
+                        <p><strong>Date of Birth:</strong> ${application.personalInfo.dateOfBirth}</p>
+                        <p><strong>Gender:</strong> ${application.personalInfo.gender}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-primary">Address Information</h6>
+                        <p><strong>Address:</strong> ${application.addressInfo.address}</p>
+                        <p><strong>City:</strong> ${application.addressInfo.city}</p>
+                        <p><strong>Postal Code:</strong> ${application.addressInfo.postalCode}</p>
+                        <p><strong>Country:</strong> ${application.addressInfo.country}</p>
+                        <p><strong>Nationality:</strong> ${application.addressInfo.nationality}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-primary">Academic Information</h6>
+                        <p><strong>Program:</strong> ${application.academicInfo.program}</p>
+                        <p><strong>Level:</strong> ${application.academicInfo.level}</p>
+                        <p><strong>Previous Institution:</strong> ${application.academicInfo.previousInstitution || 'N/A'}</p>
+                        <p><strong>GPA:</strong> ${application.academicInfo.gpa || 'N/A'}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-primary">Application Details</h6>
+                        <p><strong>Application ID:</strong> ${application.id}</p>
+                        <p><strong>Status:</strong> <span class="badge bg-${getStatusColor(application.status)}">${application.status.toUpperCase()}</span></p>
+                        <p><strong>Submitted:</strong> ${new Date(application.timestamp).toLocaleString()}</p>
+                        <p><strong>Newsletter:</strong> ${application.preferences.newsletter ? 'Yes' : 'No'}</p>
+                    </div>
+                </div>
+                ${application.files.length > 0 ? `
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <h6 class="text-primary">Uploaded Files</h6>
+                        <ul class="list-unstyled">
+                            ${application.files.map(file => `
+                                <li><i class="fas fa-file me-2"></i>${file.originalName} (${(file.size / 1024).toFixed(1)} KB)</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+                ` : ''}
+            `;
+            
+            const modalInstance = new bootstrap.Modal(modal);
+            modalInstance.show();
+        }
+
+        // Update application status
+        function updateStatus(status) {
+            if (!currentApplicationId) return;
+            
+            fetch(`/api/applications/${currentApplicationId}/status`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: status })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert('Application status updated successfully', 'success');
+                    
+                    // Update local data
+                    const appIndex = applications.findIndex(app => app.id === currentApplicationId);
+                    if (appIndex !== -1) {
+                        applications[appIndex].status = status;
+                        applications[appIndex].updatedAt = new Date().toISOString();
+                    }
+                    
+                    // Refresh display
+                    loadApplications();
+                    
+                    // Close modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('applicationModal'));
+                    modal.hide();
+                } else {
+                    showAlert(data.message || 'Error updating status', 'danger');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('Network error updating status', 'danger');
+            });
+        }
+
+        // Show alert message
+        function showAlert(message, type = 'info') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+            alertDiv.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.remove();
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+
+</html> 

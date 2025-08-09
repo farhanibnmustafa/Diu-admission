@@ -125,7 +125,7 @@
     </nav>
 
     <!-- Registration Form Section -->
-    <section class="registration-section py-5">
+    <section class="register py-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -134,7 +134,7 @@
                             <h2 class="mb-0"><i class="fas fa-user-plus me-2"></i>DIU Admission Registration</h2>
                         </div>
                         <div class="card-body p-4">
-                            <form id="registrationForm" novalidate>
+                            <form id="registrationForm" action="submit_application.php" method="POST" novalidate>
                                 <!-- Personal Information -->
                                 <div class="row mb-4">
                                     <div class="col-12">
@@ -259,33 +259,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Document Upload -->
-                                <div class="row mb-4">
-                                    <div class="col-12">
-                                        <h4 class="text-primary mb-3"><i class="fas fa-file-upload me-2"></i>Document Upload</h4>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="photo" class="form-label">Profile Photo *</label>
-                                        <input type="file" class="form-control" id="photo" name="photo" accept="image/*" required>
-                                        <div class="invalid-feedback">Please upload your profile photo.</div>
-                                        <div class="form-text">Maximum file size: 2MB. Supported formats: JPG, PNG</div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="transcript" class="form-label">Academic Transcript</label>
-                                        <input type="file" class="form-control" id="transcript" name="transcript" accept=".pdf,.doc,.docx">
-                                        <div class="form-text">Upload your academic transcript (PDF, DOC, DOCX)</div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="certificate" class="form-label">Certificates</label>
-                                        <input type="file" class="form-control" id="certificate" name="certificate" accept=".pdf,.doc,.docx">
-                                        <div class="form-text">Upload relevant certificates (PDF, DOC, DOCX)</div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="cv" class="form-label">CV/Resume</label>
-                                        <input type="file" class="form-control" id="cv" name="cv" accept=".pdf,.doc,.docx">
-                                        <div class="form-text">Upload your CV or Resume (PDF, DOC, DOCX)</div>
-                                    </div>
-                                </div>
+                                
 
                                 <!-- Terms and Conditions -->
                                 <div class="row mb-4">

@@ -1,140 +1,93 @@
 # DIU Admission Application
 
-A comprehensive web application for Daffodil International University's admission process, featuring both frontend and backend components with modern UI/UX design.
+Full-stack admission app with PHP 8 + MySQL backend and a Bootstrap 5 frontend. Applicants submit details; admins can log in and view submissions.
 
-## 🎯 Features
+## Features
 
-### Frontend Features
-- **Responsive Design**: Mobile-first approach using Bootstrap 5
-- **Interactive Navigation**: Dropdown menus with smooth animations
-- **Sliding Banner**: Auto-playing carousel with promotional content
-- **Form Validation**: Real-time client-side validation with JavaScript
-- **File Upload**: Support for multiple file types with size validation
-- **Progress Tracking**: Visual progress bar for form completion
-- **Auto-save**: Form data automatically saved to localStorage
-- **Print Functionality**: Print-friendly application forms
-- **Accessibility**: Keyboard navigation and screen reader support
+- Frontend (Bootstrap 5)
+  - Responsive UI, dropdown menus, carousel banner
+  - Real‑time form validation, progress bar, auto‑save, print view
+  - Custom classes simplified: `banner`, `features`, `feat-icon`, `register`, `fab` (Bootstrap classes remain unchanged)
 
+- Backend (PHP + MySQL)
+  - Stores applications in MySQL (`applications` table)
+  - Simple admin auth (session-based)
+  - Admin dashboard with search
+  - Auto-creates DB and table if missing
 
-## 🎨 UI Components
+Note: File uploads are removed (no photo/transcript/certificate/CV handling).
 
-### Home Page (`index.html`)
-- **Navigation Bar**: Two-tier navigation with dropdown menus
-- **Sliding Banner**: Bootstrap carousel with promotional content
-- **Feature Cards**: Interactive cards showcasing university features
-- **Floating Action Button**: Quick access to contact information
-- **Responsive Design**: Mobile-friendly layout
+## Quick Start
 
-### Registration Page (`registration.html`)
-- **Multi-section Form**: Organized into logical sections
-- **Real-time Validation**: Instant feedback on form inputs
-- **File Upload**: Support for photos, transcripts, certificates
-- **Progress Tracking**: Visual progress indicator
-- **Auto-save**: Form data persistence
+Requirements: PHP 8+, MySQL 8+, internet for CDN assets.
 
-### File Upload
-- Supports multiple file types (images, PDFs, documents)
-- File size limit: 2MB per file
-- Automatic file validation and storage
-
-## 📝 Form Validation
-
-### Client-side Validation
-- **Email**: Valid email format
-- **Phone**: International phone number format
-- **Date of Birth**: Valid date range (1900-present)
-- **GPA**: Numeric range (0-4)
-- **Postal Code**: 4-6 digit format
-- **Required Fields**: All mandatory fields must be filled
-
-
-## 🎯 Key Features Implementation
-
-### 1. Dropdown Navigation Menu
-```html
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-        Admissions <i class="fas fa-chevron-down"></i>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Admission</a></li>
-        <li><a class="dropdown-item" href="#">Admission Test Result</a></li>
-        <li><a class="dropdown-item" href="#">Admission Contact</a></li>
-    </ul>
-</li>
+1) Configure database in `db_config.php`:
+```php
+$DB_HOST = 'localhost';          // or '127.0.0.1' (MAMP: '127.0.0.1:8889')
+$DB_USER = 'root';               // or your MySQL user
+$DB_PASS = 'your_password';      // set your password
+$DB_NAME = 'diu_admissions';
 ```
 
-### 2. Sliding Banner
-```html
-<div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="diu-feature.jpg" class="d-block w-100" alt="DIU Campus">
-            <div class="carousel-caption">
-                <h1 class="display-4 fw-bold">Welcome to DIU</h1>
-                <p class="lead">Empowering students with quality education</p>
-            </div>
-        </div>
-    </div>
-</div>
+2) (Recommended) Create a dedicated DB user (in MySQL shell):
+```sql
+CREATE DATABASE IF NOT EXISTS diu_admissions CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS 'diu_user'@'localhost' IDENTIFIED BY 'StrongPassword!123';
+GRANT ALL PRIVILEGES ON diu_admissions.* TO 'diu_user'@'localhost';
+FLUSH PRIVILEGES;
+```
+Then update `db_config.php` to use that user.
+
+3) Run the dev server from the project folder:
+```bash
+php -S 127.0.0.1:8000 or
+php -S localhost:8000
+(If DB connect issues arise, use php -S 127.0.0.1:8000 in db_config.php)
 ```
 
-### 3. Form Validation
-```javascript
-function validateField(event) {
-    const field = event.target;
-    const value = field.value.trim();
-    
-    // Remove existing validation classes
-    field.classList.remove('is-valid', 'is-invalid');
-    
-    // Check if field is required
-    if (field.hasAttribute('required') && !value) {
-        field.classList.add('is-invalid');
-        return false;
-    }
-    
-    // Specific validation rules
-    switch (field.name) {
-        case 'email':
-            if (!isValidEmail(value)) {
-                field.classList.add('is-invalid');
-                return false;
-            }
-            break;
-    }
-    
-    // If validation passes
-    if (value) {
-        field.classList.add('is-valid');
-    }
-    
-    return true;
-}
+4) Open in your browser:
+- Applicant form: `http://127.0.0.1:8000/registration.html`
+- Admin login: `http://127.0.0.1:8000/admin_login.php`
+
+## Admin Credentials
+
+- Default username: `admin`
+- Default password: `changeme123`
+
+Change them in `db_config.php`. To set a new password hash, generate one and paste it as a static string:
+```bash
+php -r "echo password_hash('YourNewPassword', PASSWORD_DEFAULT), PHP_EOL;"
+```
+Then set:
+```php
+$ADMIN_USERNAME = 'your_username';
+$ADMIN_PASSWORD_HASH = 'PASTE_THE_HASH_HERE';
 ```
 
-## 📱 Responsive Design
+## Database
 
-The application is fully responsive with breakpoints for:
-- **Mobile**: < 576px
-- **Tablet**: 576px - 768px
-- **Desktop**: > 768px
+- On first run, the app creates the database (if permitted) and the `applications` table.
+- SQL schema is also available in `schema.sql`.
+- Columns include: name, email, phone, DOB, gender, address, city, postal code, country, nationality, program, level, previous institution, GPA, newsletter flag, created_at. Upload columns were removed.
 
-## 🎨 Customization
+## Class Names (Custom)
 
-### Colors
-The application uses CSS custom properties for easy theming:
-```css
-:root {
-    --primary-color: #2E3094;
-    --secondary-color: #f19d58;
-    --dark-color: #0d1129;
-    --light-color: #ffffff;
-}
-```
+- `banner` (was `banner-section`)
+- `features` (was `features-section`)
+- `feat-icon` (was `feature-icon`)
+- `register` (was `registration-section`)
+- `fab` (was `floating-action-btn`)
 
-### Styling
-- Custom CSS with Bootstrap 5 integration
-- Smooth animations and transitions
-- Modern gradient backgrounds
-- Consistent spacing and typography
+Bootstrap classes like `navbar`, `dropdown-menu`, `btn`, etc., are kept as-is for compatibility.
+
+## Troubleshooting
+
+- Access denied (MySQL): update credentials in `db_config.php` or use the recommended dedicated user.
+- MAMP: host `127.0.0.1:8889`, user `root`, pass `root`.
+- Hard refresh after CSS changes (Cmd+Shift+R).
+
+## Security Notes
+
+- Do not commit real passwords. Prefer env vars for production.
+- Replace default admin credentials immediately.
+- Add CSRF protection and stricter input validation for production.

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeFormValidation();
     initializeCarousel();
     initializeAnimations();
-    initializeFileUpload();
+    // File uploads removed
     initializeProgressTracking();
     
     // Form validation and submission
@@ -21,8 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
             input.addEventListener('input', clearValidation);
         });
         
-        // Form submission
-        form.addEventListener('submit', handleFormSubmission);
+        // Form submission via AJAX only when explicitly enabled
+        if (form.dataset.ajax === 'true') {
+            form.addEventListener('submit', handleFormSubmission);
+        }
         
         // Reset form
         const resetBtn = form.querySelector('button[type="reset"]');
@@ -271,48 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize file upload
-    function initializeFileUpload() {
-        const fileInputs = document.querySelectorAll('input[type="file"]');
-        
-        fileInputs.forEach(input => {
-            input.addEventListener('change', handleFileUpload);
-        });
-    }
-    
-    // Handle file upload
-    function handleFileUpload(event) {
-        const file = event.target.files[0];
-        const input = event.target;
-        
-        if (!file) return;
-        
-        // Validate file size (2MB limit)
-        const maxSize = 2 * 1024 * 1024; // 2MB
-        if (file.size > maxSize) {
-            showAlert('File size must be less than 2MB.', 'danger');
-            input.value = '';
-            return;
-        }
-        
-        // Validate file type
-        const allowedTypes = {
-            'photo': ['image/jpeg', 'image/png', 'image/jpg'],
-            'transcript': ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
-            'certificate': ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
-            'cv': ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
-        };
-        
-        const fieldName = input.name;
-        if (allowedTypes[fieldName] && !allowedTypes[fieldName].includes(file.type)) {
-            showAlert('Invalid file type. Please upload the correct file format.', 'danger');
-            input.value = '';
-            return;
-        }
-        
-        // Show success message
-        showAlert(`File "${file.name}" uploaded successfully.`, 'success');
-    }
+    // File upload logic removed
     
     // Initialize progress tracking
     function initializeProgressTracking() {

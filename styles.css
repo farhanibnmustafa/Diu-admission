@@ -146,7 +146,7 @@ body {
 
 /* Features Section */
 .features {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: linear-gradient(135deg, #0c2136 0%, #e9ecef 100%);
 }
 
 .card {
@@ -154,6 +154,14 @@ body {
     border: none;
     border-radius: 15px;
     overflow: hidden;
+    background-color: #070988;
+}
+
+.card h5{
+    color: white;
+}
+.card p{
+    color: white;
 }
 
 .card:hover {

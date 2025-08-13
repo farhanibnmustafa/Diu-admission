@@ -154,7 +154,10 @@ body {
     border: none;
     border-radius: 15px;
     overflow: hidden;
-    background-color: #070988;
+}
+.card1{
+    background-color:#0f11a6;
+    margin-top: 30px;
 }
 
 .card h5{
@@ -308,6 +311,10 @@ body {
 
 .btn-close {
     filter: invert(1);
+}
+
+[data-bs-toggle="modal"]{
+    margin: 20px;
 }
 
 /* Footer */

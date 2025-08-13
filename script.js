@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Auto-play carousel
         const carouselInstance = new bootstrap.Carousel(carousel, {
-            interval: 5000,
+            interval: 2500,
             wrap: true,
             keyboard: true
         });
@@ -438,16 +438,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Add print functionality
-    const printBtn = document.createElement('button');
-    printBtn.className = 'btn btn-outline-primary position-fixed';
-    printBtn.style.cssText = 'top: 20px; right: 20px; z-index: 1000;';
-    printBtn.innerHTML = '<i class="fas fa-print"></i>';
-    printBtn.title = 'Print Application';
-    printBtn.addEventListener('click', () => {
-        window.print();
-    });
-    document.body.appendChild(printBtn);
     
     console.log('DIU Admission Application initialized successfully!');
 }); 
